@@ -1,0 +1,4 @@
+*.gch
+*.o
+guess_nbr
+.DS_Store*
