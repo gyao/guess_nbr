@@ -1,4 +1,5 @@
 #include <time.h>
 #include <string.h>
+#include <stdlib.h>
 
-void gen_rand_string(char *src, int len, char *dest);
+char *gen_rand_string(char *seed, int len);
