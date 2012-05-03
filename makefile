@@ -1,15 +1,17 @@
-all: guess_nbr.o gen_rand_string.o evel_guess.o
-	gcc guess_nbr.o gen_rand_string.o evel_guess.o -o guess_nbr
+objects = gen_rand_string.o evel_guess.o
 
-guess_nbr.o: guess_nbr.c guess_nbr.h
-	gcc -c guess_nbr.c guess_nbr.h
+guess_nbr: guess_nbr.c guess_nbr.h $(objects)
+	gcc $^ -o guess_nbr
+	
+all: $(objects)
+$(objects): %.o: %.c
+	gcc -c $< -o $@
+	
+gen_rand_string.o: gen_rand_string.h
 
-gen_rand_string.o: gen_rand_string.c gen_rand_string.h
-	gcc -c gen_rand_string.c gen_rand_string.h
+evel_guess.o: evel_guess.h
 
-evel_guess.o: evel_guess.c evel_guess.h
-	gcc -c evel_guess.c evel_guess.h
-
+.PHONY: clean
 clean:
 	rm -f *.o
 	rm -f guess_nbr
